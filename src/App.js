@@ -15,7 +15,7 @@ class App extends Component {
               <p>Olexandr Hnennyi</p>
             </ListItem>
             <ListItem className="list-item">
-              <p>Vlados Bobrovskyi</p>
+              <p>Vladoos Bobrovskyi</p>
             </ListItem>
             <ListItem className="list-item">
               <p>Maxim Potapov</p>
