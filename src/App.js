@@ -12,7 +12,7 @@ class App extends Component {
         <Grid container className="body-container" justify="center">
           <List>
             <ListItem className="list-item">
-              <p>Olexandr Hnennyi</p>
+              <p>Olexandr -__- Hnennyi</p>
             </ListItem>
             <ListItem className="list-item">
               <p>Vladoos Bobrovskyi</p>
