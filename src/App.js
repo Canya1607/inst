@@ -15,7 +15,7 @@ class App extends Component {
               <p>Olexandr -__- Hnennyi</p>
             </ListItem>
             <ListItem className="list-item">
-              <p>Vladoos -- Bobrovskyi</p>
+              <p>Vladoos -!- Bobrovskyi</p>
             </ListItem>
             <ListItem className="list-item">
               <p>Maxim Potapov</p>
