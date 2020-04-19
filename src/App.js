@@ -7,8 +7,8 @@ import themeFile from './util/theme';
 import jwtDecode from 'jwt-decode';
 
 //Components
-import Navbar from './components/Navbar'
-import AuthRoute from './util/AuthRoute'
+import Navbar from './components/Navbar';
+import AuthRoute from './util/AuthRoute';
 //Pages
 import home from './pages/home';
 import login from './pages/login';
