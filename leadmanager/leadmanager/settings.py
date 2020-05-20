@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'leads2',
     'rest_framework',
     'knox',
-    'accounts'   
+    'accounts',
+    'posts',   
 ]
 
 REST_FRAMEWORK = {

@@ -1,6 +1,8 @@
-#!/usr/bin/env python
+# pipenv shell
+# pip install -r requirements.txt
+# superuser => username: ggadmin, password: => 123456
 
-#  knox не відображається в піп файлі, через це не можу зробити пост реквест на api/auth/register
+
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
