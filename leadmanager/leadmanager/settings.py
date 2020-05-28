@@ -38,11 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'leads2',
     'rest_framework',
     'knox',
     'accounts',
-    'posts',   
+    'posts',
+    'userProfiles',   
 ]
 
 REST_FRAMEWORK = {
@@ -186,3 +186,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # folder where upload files is located in a filesystem
+MEDIA_URL = '/media/' # browser usrl 

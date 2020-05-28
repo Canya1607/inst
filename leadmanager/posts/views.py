@@ -1,14 +1,17 @@
 from django.shortcuts import render
 from .models import  Post
-# Create your views here.
+from rest_framework import viewsets
+from .serializers import PostSerializer
+from django.http import HttpResponse
 
 
-def home (request) :
-    context = {
-        'posts' : Post.objects.all()
-    }
-    return render(request, 'post/home.html', context)
+class PostView(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
 
-def about(request):
-    return render(request, 'post/about.html', {'title':'About'})
 
+def feed_view(request, *args, **kwargs):
+    return HttpResponse("<h1> Feeed page </h1>")
+
+def post_detail_view(request,post_id ,*args, **kwargs):
+    return HttpResponse(f"<h1> Post {post_id} </h1>")
