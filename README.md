@@ -1,6 +1,5 @@
 # FRONTEND [link](https://github.com/Canya1607/inst)
 # BACKEND  [link](https://github.com/Canya1607/inst/tree/back)
-# DEVOPS   [link](https://github.com/Canya1607/inst/tree/dev)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
