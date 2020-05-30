@@ -18,6 +18,7 @@ class userProfileSerializer(serializers.ModelSerializer):
         user = User.objects.create(
             username=validated_data['username'],
             email=validated_data['email'],
+            
         )
 
         return user
