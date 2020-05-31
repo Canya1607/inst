@@ -1,9 +1,26 @@
-import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI } from "../types";
-import axios from 'axios';
+import {
+  SET_USER,
+  SET_ERRORS,
+  CLEAR_ERRORS,
+  LOADING_UI,
+  SET_UNAUTHENTICATED,
+  LOADING_USER,
+} from "../types";
+import axios from "axios";
+
+const setAuthorizationHeader = (token) => {
+  const Token = `Token ${token}`;
+  localStorage.setItem("Token", Token);
+  axios.defaults.headers.common["Authorization"] = Token;
+  //
+  const Exp = new Date().getTime() + 98765432;
+  localStorage.setItem("Expired", Exp);
+};
 
 export const getUserData = () => (dispatch) => {
+  dispatch({ type: LOADING_USER });
   axios
-    .get("/user")
+    .get("/api/auth/user")
     .then((res) => {
       dispatch({
         type: SET_USER,
@@ -14,11 +31,12 @@ export const getUserData = () => (dispatch) => {
 };
 
 export const loginUser = (userData, history) => (dispatch) => {
-  dispatchEvent({ type: LOADING_UI });
+  dispatch({ type: LOADING_UI });
   axios
-    .post("/login", userData)
+    .post("/api/auth/login", userData)
     .then((res) => {
-      setAuthorizationHeader(res.data.token)
+      console.log(res);
+      setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
       history.push("/");
@@ -26,17 +44,18 @@ export const loginUser = (userData, history) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: SET_ERRORS,
-        payload: err.response.data
-      })
+        payload: err.response.data,
+      });
     });
 };
 
 export const signupUser = (newUserData, history) => (dispatch) => {
-  dispatchEvent({ type: LOADING_UI });
+  dispatch({ type: LOADING_UI });
   axios
-    .post("/signup", newUserData)
+    .post("/api/auth/register", newUserData)
     .then((res) => {
-      setAuthorizationHeader(res.data.token)
+      console.log(res);
+      setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
       history.push("/");
@@ -44,19 +63,24 @@ export const signupUser = (newUserData, history) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: SET_ERRORS,
-        payload: err.response.data
-      })
+        payload: err.response.data,
+      });
     });
 };
 
-export const logoutUser = () => (dispatch) => {
-  localStorage.removeItem('FBidToken');
-  delete axios.defaults.headers.common['Authorization'];
-  dispatch({ type: SET_UNAUTHENTICATED });
-}
+export const uploadImage = (formData, userId) => (dispatch) => {
+  dispatch({ type: LOADING_USER });
+  axios
+    .patch(`/userProfiles/${userId}/`, formData)
+    .then(() => {
+      console.log("image updated");
+    })
+    .catch((err) => console.log(err));
+};
 
-const setAuthorizationHeader = (token) => {
-  const FBIdToken = `Bearer ${res.data.token}`;
-  localStorage.setItem("FBIdToken", `Bearer ${FBIdToken}`);
-  axios.defaults.headers.common["Authorization"] = FBIdToken;
-}
+export const logoutUser = () => (dispatch) => {
+  localStorage.removeItem("Token");
+  localStorage.removeItem("Expired");
+  delete axios.defaults.headers.common["Authorization"];
+  dispatch({ type: SET_UNAUTHENTICATED });
+};

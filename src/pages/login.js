@@ -20,7 +20,7 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
+      username: "",
       password: "",
       errors: {},
     };
@@ -35,7 +35,7 @@ class Login extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const userData = {
-      email: this.state.email,
+      username: this.state.username,
       password: this.state.password,
     };
     this.props.loginUser(userData, this.props.history);
@@ -48,7 +48,6 @@ class Login extends Component {
   };
 
   render() {
-    console.log('!!', this.props)
     const {
       classes,
       UI: { loading },
@@ -64,14 +63,14 @@ class Login extends Component {
           </Typography>
           <form noValidate onSubmit={this.handleSubmit}>
             <TextField
-              id="email"
-              name="email"
-              type="email"
-              label="Email"
+              id="username"
+              name="username"
+              type="username"
+              label="Username"
               className={classes.textField}
-              helperText={errors.email}
-              error={errors.email ? true : false}
-              value={this.state.email}
+              helperText={errors.username}
+              error={errors.username ? true : false}
+              value={this.state.username}
               onChange={this.handleChange}
               fullWidth
             />

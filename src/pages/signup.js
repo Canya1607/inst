@@ -20,10 +20,9 @@ class SignUp extends Component {
   constructor() {
     super();
     this.state = {
+      username: "",
       email: "",
       password: "",
-      confirmPassword: '',
-      handle: '',
       errors: {}
     };
   }
@@ -37,10 +36,9 @@ class SignUp extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const newUserData = {
+      username: this.state.username,
       email: this.state.email,
-      password: this.state.password,
-      confirmPassword: this.state.confirmPassword,
-      handle: this.state.handle
+      password: this.state.password
     };
     this.props.signupUser(newUserData, this.props.history);
   };
@@ -64,6 +62,18 @@ class SignUp extends Component {
           </Typography>
           <form noValidate onSubmit={this.handleSubmit}>
             <TextField
+              id="username"
+              name="username"
+              type="text"
+              label="Username"
+              className={classes.textField}
+              helperText={errors.username}
+              error={errors.username ? true : false}
+              value={this.state.username}
+              onChange={this.handleChange}
+              fullWidth
+            />
+            <TextField
               id="email"
               name="email"
               type="email"
@@ -84,30 +94,6 @@ class SignUp extends Component {
               helperText={errors.password}
               error={errors.password ? true : false}
               value={this.state.password}
-              onChange={this.handleChange}
-              fullWidth
-            />
-            <TextField
-              id="password"
-              name="password"
-              type="password"
-              label="Password"
-              className={classes.textField}
-              helperText={errors.password}
-              error={errors.password ? true : false}
-              value={this.state.password}
-              onChange={this.handleChange}
-              fullWidth
-            />
-            <TextField
-              id="handle"
-              name="handle"
-              type="text"
-              label="Handle"
-              className={classes.textField}
-              helperText={errors.handle}
-              error={errors.handle ? true : false}
-              value={this.state.handle}
               onChange={this.handleChange}
               fullWidth
             />
